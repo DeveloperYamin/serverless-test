@@ -7,12 +7,11 @@ const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
-const tableName = "order";
-
 export async function GET(request: Request) {
     console.log("🚀 ~ GET ~ request:", request);
     const { count } = await supabase
-        .from(tableName)
+        .from("order")
         .select("*", { count: "exact" });
+    console.log("🚀 ~ GET ~ count:", count)
     return new Response(JSON.stringify(count));
 }
