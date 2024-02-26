@@ -12,6 +12,11 @@ export async function GET(request: Request) {
     const { count } = await supabase
         .from("order")
         .select("*", { count: "exact" });
-    console.log("🚀 ~ GET ~ count:", count)
+    console.log("🚀 ~ GET ~ count:", count);
+
+    const { count: countData } = await supabase
+        .from("contractor")
+        .select("*", { count: "exact" });
+    console.log("🚀 ~ GET ~ countData:", countData);
     return new Response(JSON.stringify(count));
 }
